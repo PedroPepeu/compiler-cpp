@@ -1,0 +1,47 @@
+#ifndef TokenType_H
+#define TokenType_H
+enum TokenType 
+{
+    NUM_DEC, 
+    NUM_INT, 
+    ID, 
+    STRING, 
+    COMMENT, 
+    RESERVED_KEYWORD, 
+    BINARY_OPERATOR, 
+    OPEN_PAREN, 
+    CLOSE_PAREN, 
+    EQUALS, 
+    SEMICOLON, 
+    CODEBLOCK, 
+    ENDCODEBLOCK, 
+    SYMBOL, 
+    COMPARATOR_SYMBOLS, 
+    CHAR,
+    PLUSPLUS,
+    MINUSMINUS,
+    EOFF,
+    RETURN,
+    OPEN_CURLY_BRACE,
+    CLOSE_CURLY_BRACE,
+    FUNCTION,
+    COMMA,
+    IF,
+    WHILE,
+    ELSE,
+    ELSE_IF,
+    EQUALSEQUALS,
+    NOTEQUALS,
+    PLUSEQUALS,
+    MINUSEQUALS,
+    TIMESEQUALS,
+    SLASHEQUALS,
+    PLUS,
+    MINUS,
+    TIMES,
+    SLASH,
+    PERCENT,
+    BOOLEAN
+};
+
+#endif 
