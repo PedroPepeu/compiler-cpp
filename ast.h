@@ -1,3 +1,6 @@
+#ifndef AST_H
+#define AST_H
+
 #include<bits/stdc++.h>
 #include "Tokens.h"
 #include "TokenType.h"
@@ -32,6 +35,7 @@ enum class NodeType {
 
 struct Expr;
 struct Stmt;
+struct CaseStmt;
 
 struct Stmt {
     NodeType kind;
@@ -63,7 +67,7 @@ struct VariableDeclaration : Stmt {
     Expr* initializer;
 };
 
-struct String : Stmt {
+struct Sring : Stmt {
     string symbol;
 };
 
@@ -101,7 +105,7 @@ struct While : Stmt {
 
 struct If : Stmt {
     Expr* condition;
-    Black* thenBranch;
+    Block* thenBranch;
     Block* elseBranch;
 };
 
@@ -112,7 +116,7 @@ struct UnaryExpr : Stmt {
 struct SwitchStmt : Stmt {
     NodeType kind;
     Expr* expression;
-    vector<CaseStmt*> cases;
+    vector<CaseStmt*> cases; // giving error of type, meaning that is an invalid type
     Block* defaultBlock;
 };
 
@@ -134,3 +138,5 @@ struct ForStmt : Stmt {
     Expr* increment;
     Block* body;
 };
+
+#endif

@@ -1,47 +1,63 @@
 #ifndef TokenType_H
 #define TokenType_H
+
+#include <string>
+
 enum TokenType 
 {
     NUM_DEC, 
     NUM_INT, 
-    ID, 
-    STRING, 
+    ID,
+    Int,
+    Float,
+    Bool,
+    String, 
     COMMENT, 
     RESERVED_KEYWORD, 
     BINARY_OPERATOR, 
     OPEN_PAREN, 
     CLOSE_PAREN, 
-    EQUALS, 
-    SEMICOLON, 
-    CODEBLOCK, 
+    Equals, 
+    Semicolon, 
+    Codeblock, 
     ENDCODEBLOCK, 
-    SYMBOL, 
+    Symbol, 
     COMPARATOR_SYMBOLS, 
-    CHAR,
-    PLUSPLUS,
-    MINUSMINUS,
+    Char,
+    PlusPlus,
+    MinusMinus,
     EOFF,
-    RETURN,
-    OPEN_CURLY_BRACE,
-    CLOSE_CURLY_BRACE,
-    FUNCTION,
-    COMMA,
-    IF,
-    WHILE,
-    ELSE,
-    ELSE_IF,
-    EQUALSEQUALS,
-    NOTEQUALS,
-    PLUSEQUALS,
-    MINUSEQUALS,
-    TIMESEQUALS,
-    SLASHEQUALS,
-    PLUS,
-    MINUS,
-    TIMES,
-    SLASH,
-    PERCENT,
-    BOOLEAN
+    _return,
+    OpenCurlyBrace,
+    CloseCurlyBrace,
+    Functio,
+    Comma,
+    If,
+    While,
+    Else,
+    equalsequals,
+    Noteequals,
+    Plusequals,
+    Minusequals,
+    Starequals,
+    Slashequals,
+    Plus,
+    Minus,
+    Star,
+    Slash,
+    Percent,
+    Boolean,
+    Case,
+    Switch,
+    Default,
+    Colon,
+    For,
+    LessThan
+};
+
+struct Token {
+    std::string value;
+    TokenType type;
 };
 
 #endif 

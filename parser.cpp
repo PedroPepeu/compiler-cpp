@@ -1,11 +1,15 @@
 #include <iostream>
 #include <vector>
-#include <Tokens.h>
-#include <TokenType.h>
+#include "Tokens.h"
+#include "TokenType.h"
+#include "ast.h"
 
 using namespace std;
+using namespace TokenType;
 
-vector<Token> tokens;
+vector<Tokens> tokens;
+
+class parser {
 
 private:
 
@@ -13,20 +17,20 @@ bool not_eof() {
     return tokens[0].type != TokenType::EOF;
 }
 
-Token at() {
+Tokens at() {
     return tokens[0];
 }
 
-Token eat() {
-    Token prev = tokens[0];
+Tokens eat() {
+    Tokens prev = tokens[0];
     tokens.erase(tokens.begin());
     return prev;
 }
 
-Token expect(TokenType type, const string& err) {
-    Token prev = tokens[0];
-    if(!prev.value.empy() || prev.type != type) {
-        cerr < "Parser Error:\n" << err << prev.value << " - Expecting: " << type << endl;
+Tokens expect(TokenType type, const string& err) {
+    Tokens prev = tokens[0];
+    if(!prev.value.empty() || prev.type != type) {
+        cerr << "Parser Error:\n" << err << prev.value << " - Expecting: " << type << endl;
         exit(EXIT_FAILURE);
     }
     tokens.erase(tokens.begin());
@@ -74,17 +78,17 @@ If parse_if() {
     return If("If", condition, thenBranch, elseBranch);
 }
 
-FunctionDeclaration parse_function_delcaration() {
+FunctionDeclaration parse_function_declaration() {
     expect(TokenType::Function, "Expecting 'function' keyword.");
 
     Identifier identifier = parse_identifier();
 
     expect(TokenType::OpenParen, "Expecting '(' after function identifier");
 
-    vector<Paremeter> parameters;
+    vector<Parameter> parameters;
 
     while(currentToken().type != TokenType::CloseParen) {
-        paremeters.push_back({
+        parameters.push_back({
                 "Parameter",
                 parse_function_declaration_parameters()
                 });
@@ -409,20 +413,20 @@ Expr parse_primary_expr() {
         case TokenType::_return: {
             eat();
             if (currentToken().type == TokenType::Semi) {
-                return _return{"_return", nullptr};
+                return NodeType::_return{"_return", nullptr};
             } else {
                 Expr expression = parse_expr();
-                return _return{"_return", expression};
+                return NodeType::_return{"_return", expression};
             }
         }
 
         case TokenType::Char:
-            return Char{"Char", currentToken(), value};
+            return CHAR{"Char", currentToken(), value};
 
         case TokenType::String:
-            return Stirng{"String", currentToken(), value};
+            return STRING{"String", currentToken(), value};
 
-        case TokenType::Semi,
+        case TokenType::Semicolon,
              return Stmt{"Semicolon"};
 
         default:
@@ -443,4 +447,6 @@ Program* produceAST(vector<Token> _tokens) {
     }
 
     return program;
-} 
+}
+
+};
